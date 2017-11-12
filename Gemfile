@@ -1,3 +1,5 @@
 source 'https://rubygems.org'
-
-gemspec
+gem 'jekyll'
+gem 'redcarpet'
+gem 'jekyll-paginate'
+gem 'jekyll-sitemap'
