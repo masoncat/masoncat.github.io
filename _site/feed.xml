@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>刘伟明</title>
+    <description>欢迎来到我的个人站~</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 19 Nov 2017 18:42:41 +0800</pubDate>
+    <lastBuildDate>Sun, 19 Nov 2017 18:42:41 +0800</lastBuildDate>
+    <generator>Jekyll v3.5.2</generator>
+    
+      <item>
+        <title>this</title>
+        <description>&lt;h2 id=&quot;含义&quot;&gt;含义&lt;/h2&gt;
+&lt;p&gt;this是JavaScript中的一个关键字,表示函数的作用域,指向的是&lt;strong&gt;调用&lt;/strong&gt;函数的对象。
+强调一下是调用，而不是在哪里执行。&lt;/p&gt;
+
+&lt;p&gt;例如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var num = 66;
+var a = function(){
+    this.num = 2;
+    this.fn =  function(){
+        console.log(this);
+    }
+    this.arr = [this.num,this.num*this.num];
+    console.log(this);
+    return function(){
+        console.log(this);
+    }
+}
+a();
+var b = {};
+b.a = a;
+var c = b;
+b.a();
+c.a();
+var d = new b.a();
+d();
+var e = d;
+e();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;运行以上代码，会发现：&lt;/p&gt;
+
+&lt;p&gt;默认情况，没有被对下调用，this会指向全局对象window，并且可以在函数内部正常修改window对象。&lt;/p&gt;
+
+&lt;p&gt;如果在执行的时候，是某个对象的方法，则this指向该对象。&lt;/p&gt;
+
+&lt;p&gt;如果进行构造函数实例化的过程中，则this指向new出来的实例。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：如果在一个dom节点绑定一个click事件函数，则this指向这个节点。你可以理解，是这个节点对象调用了这个方法。&lt;/p&gt;
+
+&lt;h3 id=&quot;applycall&quot;&gt;apply&amp;amp;call&lt;/h3&gt;
+&lt;p&gt;可以通过这两个方法，在执行的时候指定对应的this指向谁。
+使用方法有一些区别&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn.apply(this,[arg1,arg2,arg3]);
+fn.call(this,arg1,arg2,arg3);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;bind&quot;&gt;bind&lt;/h3&gt;
+&lt;p&gt;bind可以绑定当前函数指向的this，但不会立即执行。
+示例：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fn.bind(this)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;练习题&quot;&gt;练习题&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function a(xx){this.x=xx;return this};
+var x=a(5);var y=a(6);
+console.log(x);
+console.log(y);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var scope = &quot;global&quot;;
+    function log(){
+        var args = Array.prototype.join.call(arguments, &quot;, &quot;);
+        console.log(this.scope + ':' + args);
+    }
+    var dog = {
+        scope:'dog',
+        yelp: function(){
+            var scope = 'dog.yelp';
+            log('wow');
+        }
+    }        
+    dog.yelp();        
+    dog.yelp.call(dog);        
+    log.call(dog, 'created');
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var number = 2;
+var obj = {
+    number: 8,
+    /*匿名函数自调*/
+    fn1: (function() {
+        var number;
+        this.number *= 2;
+
+        number = number * 2;
+        number = 3;
+        return function() {
+            var num = this.number;
+            this.number *= 2;
+            console.log(num);
+            number *= 3;
+            console.log('number:' + number);
+        }
+    }
+    )()
+}
+
+var fn1 = obj.fn1;
+
+console.log(number);
+
+fn1();
+
+obj.fn1();
+
+console.log(window.number);
+
+console.log(obj.number);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Sun, 19 Nov 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/11/this/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/11/this/</guid>
+        
+        <category>JavaScript基础</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>第一篇博客：整理</title>
+        <description>&lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
+
+&lt;p&gt;从大三上开始打算学习前端，到现在也快三年了。从一个对编程只停留在大一混C++的阶段，到现在对前端开发有了基本了解。中间惶恐过，茫然过。所幸付出的辛苦没有白费，对现在的工作还算满意。&lt;/p&gt;
+
+&lt;p&gt;开这个博客的目的，也是希望能将所学的知识，进行归纳总结，沉淀下来。&lt;/p&gt;
+
+&lt;p&gt;但愿，能坚持下去，不忘初心。&lt;/p&gt;
+
+&lt;p&gt;我理解的前端开发工程师，不单单是实现需求文档里的功能。更要考虑，兼容性，还原度，可维护，语义化等方面。做一个NB的JSer，而不是一个搬砖的码农。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 12 Nov 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/11/intro/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/11/intro/</guid>
+        
+        <category>个人</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
